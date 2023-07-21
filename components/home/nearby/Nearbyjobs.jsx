@@ -1,11 +1,17 @@
-import React from 'react';
 import { useRouter } from 'expo-router';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  FlatList,
+} from 'react-native';
 
-import styles from './nearbyjobs.style';
-import { COLORS } from '../../../constants';
-import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import useFetch from '../../../hooks/useFetch';
+import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
+
+import { COLORS, SIZES } from '../../../constants';
+import styles from './nearbyjobs.style';
 
 const Nearbyjobs = () => {
   const router = useRouter();
@@ -29,13 +35,28 @@ const Nearbyjobs = () => {
         ) : error ? (
           <Text>Something went wrong</Text>
         ) : (
-          data?.map((job) => (
-            <NearbyJobCard
-              job={job}
-              key={`nearby-job-${job.job_id}`}
-              handleNavigate={() => router.push(`/job-details/${job.job_id}`)}
-            />
-          ))
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <NearbyJobCard
+                job={item}
+                // key={`nearby-job-${job.job_id}`}
+                handleNavigate={() =>
+                  router.push(`/job-details/${item.job_id}`)
+                }
+              />
+            )}
+            keyExtractor={(item) => item.job_id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
+            // horizontal
+          />
+          // data?.map((job) => (
+          //   <NearbyJobCard
+          //     job={job}
+          //     key={`nearby-job-${job.job_id}`}
+          //     handleNavigate={() => router.push(`/job-details/${job.job_id}`)}
+          //   />
+          // ))
         )}
       </View>
     </View>

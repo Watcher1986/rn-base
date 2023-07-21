@@ -27,6 +27,24 @@ const Popularjobs = () => {
     setSelectedJob(item.job_id);
   };
 
+  const jobsList = error ? (
+    <Text>Something went wrong</Text>
+  ) : (
+    <FlatList
+      data={data}
+      renderItem={({ item }) => (
+        <PopularJobCard
+          item={item}
+          selectedJob={selectedJob}
+          handleCardPress={handleCardPress}
+        />
+      )}
+      keyExtractor={(item) => item.job_id}
+      contentContainerStyle={{ columnGap: SIZES.medium }}
+      horizontal
+    />
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -42,19 +60,7 @@ const Popularjobs = () => {
         ) : error ? (
           <Text>Something went wrong</Text>
         ) : (
-          <FlatList
-            data={data}
-            renderItem={({ item }) => (
-              <PopularJobCard
-                item={item}
-                selectedJob={selectedJob}
-                handleCardPress={handleCardPress}
-              />
-            )}
-            keyExtractor={(item) => item.job_id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
-            horizontal
-          />
+          jobsList
         )}
       </View>
     </View>

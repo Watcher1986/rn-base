@@ -1,4 +1,4 @@
-import profile from '../assets/images/my-pic.jpg';
+import profile from '../assets/images/myPic2018.png';
 
 export default {
   profile,
