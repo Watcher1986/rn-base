@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 
@@ -12,39 +12,14 @@ import {
 
 const Home = () => {
   const router = useRouter();
-  const [isSearch, setIsSearch] = useState(false);
-  const [isFilter, setIsFilter] = useState(false);
-  const [isSort, setIsSort] = useState(false);
-  const [isLocation, setIsLocation] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearch = () => {
-    setIsSearch(!isSearch);
-  };
-  const handleFilter = () => {
-    setIsFilter(!isFilter);
-  };
-  const handleSort = () => {
-    setIsSort(!isSort);
-  };
-  const handleLocation = () => {
-    setIsLocation(!isLocation);
-  };
-
-  const handleScreenHeaderBtn = (route) => {
-    router.push(route);
-  };
-
-  const handleNearbyjobs = () => {
-    router.push('nearbyjobs');
-  };
-
-  const handlePopularjobs = () => {
-    router.push('popularjobs');
-  };
-
-  const handleWelcome = () => {
-    router.push('welcome');
-  };
+  const handleSearch = useCallback(() => {
+    if (searchTerm) {
+      router.push(`/search/${searchTerm}`);
+    }
+    return;
+  }, [searchTerm]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -64,7 +39,11 @@ const Home = () => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.medium }}>
-          <Welcome />
+          <Welcome
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            handleClick={handleSearch}
+          />
           <Popularjobs />
           <Nearbyjobs />
         </View>

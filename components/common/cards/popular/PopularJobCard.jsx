@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 
-import { checkImageURL } from '../../../../utils';
+import { checkImageURL } from '../../../../utils/checkImgUrl';
 
 import styles from './popularjobcard.style';
 

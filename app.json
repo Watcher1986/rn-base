@@ -4,7 +4,14 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "rn-initial",
-    "slug": "rn-initial"
+    "name": "Jobs search",
+    "slug": "jobs-search",
+    "version": "0.0.1",
+    "extra": {
+      "eas": {
+        "projectId": "254990f5-c1db-4989-96d4-71d83126de5e"
+      }
+    },
+    "owner": "d_s"
   }
 }

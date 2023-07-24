@@ -1,6 +1,6 @@
 import { View, Text, Image } from 'react-native';
 
-import { checkImageURL } from '../../../utils';
+import { checkImageURL } from '../../../utils/checkImgUrl';
 
 import { icons } from '../../../constants';
 import styles from './company.style';

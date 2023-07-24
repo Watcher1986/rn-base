@@ -29,14 +29,19 @@ const JobDetails = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[1]);
 
-  // const id = params?.id;
   const { data, isLoading, error, refetch } = useFetch('job-details', {
     job_id: id,
   });
 
-  console.log(id);
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  }, []);
 
-  const onRefresh = useCallback(() => {}, []);
+  const handleBackBtn = useCallback(() => {
+    router.back();
+  }, [router]);
 
   if (!data?.length) return null;
 
@@ -98,7 +103,7 @@ const JobDetails = () => {
             <ScreenHeaderBtn
               iconUrl={icons.left}
               dimension='60%'
-              handlePress={() => router.back()}
+              handlePress={handleBackBtn}
             />
           ),
           headerRight: () => (
