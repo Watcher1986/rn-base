@@ -10,10 +10,12 @@ import {
 } from 'react-native';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 
+import useSearch from '../../hooks/useSearch';
+
 import { ScreenHeaderBtn, NearbyJobCard } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
+
 import styles from '../../styles/search';
-import useSearch from '../../hooks/useSearch';
 
 const JobSearch = () => {
   const params = useLocalSearchParams();
