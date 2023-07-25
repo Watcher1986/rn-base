@@ -6,7 +6,7 @@ In order to run/test this application on your mobile device you need to install 
 
 ![Alt text](assets/job-search-app.png)
 
-or by a direct ['link'](exp://exp.host/@d_s/rn-initial?release-channel=default)
+or by a direct [link](exp://exp.host/@d_s/rn-initial?release-channel=default)
 
 ## Expo Router Example
 
